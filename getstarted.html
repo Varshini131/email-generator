@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Started - Email System</title>
+<link rel="stylesheet" href="getstarted.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Employee Registration</h1>
+
+<!-- Form -->
+<input type="text" id="first" placeholder="First Name" required>
+<input type="text" id="middle" placeholder="Middle Name (Optional)">
+<input type="text" id="last" placeholder="Last Name" required>
+
+<select id="dept">
+    <option value="">Select Department</option>
+    <option>IT</option>
+    <option>HR</option>
+    <option>Finance</option>
+    <option>Marketing</option>
+    <option>Operations</option>
+</select>
+
+<button onclick="generate()">Generate Email</button>
+
+<!-- Result -->
+<div class="result" id="result">
+
+    <p><b>Full Name:</b> <span id="name"></span></p>
+    <p><b>Department:</b> <span id="department"></span></p>
+    <p><b>Email ID:</b> <span id="email"></span></p>
+    <p><b>Password:</b> <span id="password"></span></p>
+    <p><b>Mailbox:</b> 500MB</p>
+
+</div>
+
+</div>
+
+<script>
+
+function generate(){
+
+    let f = document.getElementById("first").value.trim();
+    let m = document.getElementById("middle").value.trim();
+    let l = document.getElementById("last").value.trim();
+    let d = document.getElementById("dept").value;
+
+    if(f=="" || l=="" || d==""){
+        alert("Please fill all required fields!");
+        return;
+    }
+
+    // Full Name
+    let full = f+" "+(m?m+" ":"")+l;
+
+    // Email
+    let email = f.toLowerCase()+"."+l.toLowerCase()+"@company.com";
+
+    // Password
+    let pass = Math.random().toString(36).slice(-8);
+
+    // Show Result
+    document.getElementById("name").innerText = full;
+    document.getElementById("department").innerText = d;
+    document.getElementById("email").innerText = email;
+    document.getElementById("password").innerText = pass;
+
+    document.getElementById("result").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
